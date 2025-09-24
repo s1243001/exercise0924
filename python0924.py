@@ -37,5 +37,4 @@ def check_password_strength(password):
     else:
         return "強"
     
-# 測試函式
-print(check_password_strength("Password123"))          
+         
