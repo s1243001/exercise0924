@@ -1,5 +1,5 @@
 # test_python0924.py
-
+import pytest
 from python0924 import check_password_strength
 
 def test_weak_passwords():
