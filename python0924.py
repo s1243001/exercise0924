@@ -30,7 +30,7 @@ def find_max(numbers: List[Union[int, float]]) -> Union[int, float]:
     if not numbers:
         raise ValueError("The list is empty")
     for n in numbers:
-        if not isinstance(n, (int, float)):
+        if not isinstance(n, (int, float)) or isinstance(n, bool):
             raise ValueError(f"Element {n} is not a number")
     # 使用內建 max 函式簡化
     return max(numbers)
