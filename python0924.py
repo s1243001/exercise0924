@@ -1,53 +1,41 @@
-import math 
-def calculate_circle_area(radius):
-    """Calculate the area of a circle given its radius."""
-    if radius < 0:
-        raise ValueError("Radius cannot be negative")
-    return math.pi * radius ** 2
-print(calculate_circle_area(5))  # Example usage
-
-student = [
-{'id': 1, 'name': 'Alice', 'major': 'Computer Science'},
-{'id': 2, 'name': 'Bob', 'major': 'Mathematics'},
-{'id': 3, 'name': 'Charlie', 'major': 'Physics'}    
-]
-print (student[1]['name'])  # Accessing Bob's name
-print (student[2]['major'])  # Accessing Charlie's major
-print (student[0]['id'])  # Accessing Alice's id
-
-#寫一個函示，輸入一個數字串列，回傳該數字串列的最大值
-from typing import List, Union
-def find_max(numbers: List[Union[int, float]]) -> Union[int, float]:
-    """
-    回傳數字串列的最大值。
-    參數:
-        numbers: 數字型別(int/float)的串列
-    回傳:
-        串列中的最大值
-    拋出:
-        ValueError: 若串列為空或包含非數字元素
-    """
-    if not numbers:
-        raise ValueError("The list is empty")
-    for n in numbers:
-        if not isinstance(n, (int, float)) or isinstance(n, bool):
-            raise ValueError(f"Element {n} is not a number")
-    # 使用內建 max 函式簡化
-    return max(numbers)
-print(find_max([3, 1, 4, 1, 5, 9, 2, 6, 5]))  # Example usage
-print("--------------------")
-
-#寫一個程式，從1印到100
-#如果數字是3的倍數，印出"Fizz"
-#如果數字是5的倍數，印出"Buzz"
-#如果數字同時是3和5的倍數，印出"FizzBuzz"
-#其他則印出數字本身
-for i in range(1, 101):
-    if i % 3 == 0 and i % 5 == 0:
-        print("FizzBuzz")
-    elif i % 3 == 0:
-        print("Fizz")
-    elif i % 5 == 0:
-        print("Buzz")
+#建立一個名為check_password_streth的函式，接受一個password字串
+#規則1.檢查密碼長度是否大於等於8，如果是，分數+1
+#規則2.檢查密碼是否包含至少一個數字，如果是，分數+1
+#規則3.檢查密碼是否包含至少一個大寫字母，如果是，分數+1
+#規則3.檢查密碼是否包含至少一個小寫字母，如果是，分數+1
+#規則5.檢查密碼是否包含至少一個特殊字元，如果是，分數+1
+#最後根據總分傳回強度等級，0-2分為"弱"，3-4分為"中"，5分為"強"
+def check_password_strength(password):
+    score = 0
+    
+    # 規則1: 檢查密碼長度是否大於等於8
+    if len(password) >= 8:
+        score += 1
+    
+    # 規則2: 檢查密碼是否包含至少一個數字
+    if any(char.isdigit() for char in password):
+        score += 1
+    
+    # 規則3: 檢查密碼是否包含至少一個大寫字母
+    if any(char.isupper() for char in password):
+        score += 1
+    
+    # 規則4: 檢查密碼是否包含至少一個小寫字母
+    if any(char.islower() for char in password):
+        score += 1
+    
+    # 規則5: 檢查密碼是否包含至少一個特殊字元
+    special_characters = "!@#$%^&*()-_=+[]{}|;:'\",.<>?/`~"
+    if any(char in special_characters for char in password):
+        score += 1
+    
+    # 根據總分傳回強度等級
+    if score <= 2:
+        return "弱"
+    elif score <= 4:
+        return "中"
     else:
-        print(i)
+        return "強"
+    
+# 測試函式
+print(check_password_strength("Password123"))          
