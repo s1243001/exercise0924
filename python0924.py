@@ -16,15 +16,24 @@ print (student[2]['major'])  # Accessing Charlie's major
 print (student[0]['id'])  # Accessing Alice's id
 
 #寫一個函示，輸入一個數字串列，回傳該數字串列的最大值
-def find_max(numbers):
-    """Return the maximum value from a list of numbers."""
+from typing import List, Union
+def find_max(numbers: List[Union[int, float]]) -> Union[int, float]:
+    """
+    回傳數字串列的最大值。
+    參數:
+        numbers: 數字型別(int/float)的串列
+    回傳:
+        串列中的最大值
+    拋出:
+        ValueError: 若串列為空或包含非數字元素
+    """
     if not numbers:
         raise ValueError("The list is empty")
-    max_value = numbers[0]
-    for num in numbers:
-        if num > max_value:
-            max_value = num
-    return max_value
+    for n in numbers:
+        if not isinstance(n, (int, float)):
+            raise ValueError(f"Element {n} is not a number")
+    # 使用內建 max 函式簡化
+    return max(numbers)
 print(find_max([3, 1, 4, 1, 5, 9, 2, 6, 5]))  # Example usage
 print("--------------------")
 
